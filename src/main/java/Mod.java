@@ -16,7 +16,7 @@ public class Mod {
         long aNew = x;
 
         String bin = Long.toBinaryString(x);
-      //  System.out.println(bin);
+
         String[] binStrArr = Long.toBinaryString(x).split("");
         ArrayList<Byte> arrInt = new ArrayList<>();
 
@@ -24,20 +24,13 @@ public class Mod {
             arrInt.add(Byte.valueOf(binStrArr[i]));
 
         }
-        for(int i=0; i<arrInt.size();i++){
-          //  System.out.print(arrInt.get(i));
-        }
-       /* System.out.println();
-        System.out.println("size");
-        System.out.println(arrInt.size());
-        System.out.println(arrInt.get(arrInt.size()-3));*/
-
-        long count=0;
-        while(aNew>0){
-            count++;
-            aNew = aNew >> 1;
-
-        }
+        long count=arrInt.size();
+//        long count=0;
+//        while(aNew>0){
+//            count++;
+//            aNew = aNew >> 1;
+//
+//        }
         ArrayList<Long> arrLong = new ArrayList<>();
         arrLong.add(modul(a));
         for(int i=1; i<count;i++){
@@ -50,17 +43,13 @@ public class Mod {
         }
 
         BigInteger end = BigInteger.valueOf(1);
-        /*System.out.println("SIZES");
-        System.out.println(arrInt.size());
-        System.out.println(arrLong.size());*/
         for(int i=0; i<arrLong.size();i++){
             if(arrInt.get(i)!=0){
                 end=end.multiply(BigInteger.valueOf((arrLong.get(i))));
-               // System.out.println(end);
+
             }
         }
-        //System.out.print("end");
-        //System.out.println(end);
+
         return end.mod(BigInteger.valueOf(P));
 
     }
