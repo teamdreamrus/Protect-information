@@ -14,8 +14,16 @@ public class DiffHellman {
             System.out.println(Q);
             System.out.println(BigQ);
         }while(!(isPrime(Q) && BigQ.isProbablePrime(1)));   //test millera-rabina
+
         P=2*Q+1;
         g = random(P-1);
+        long xl = 0;
+        do{
+            Mod d = new Mod(g,Q,P);
+            BigInteger x= d.exp2();
+            xl = x.longValue();
+            System.out.println(xl==1);
+        }while(xl==1);
         System.out.print("Q: "+ Q+" P: "+P+" g: "+g +" ");
         Man m1 = new Man(P,g);
         Man m2 = new Man(P,g);

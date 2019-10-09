@@ -6,6 +6,7 @@ public class Evclid {
     private long b;
     private long x;
     private long y;
+    public long Ures;
 
     public Evclid(long a,long b,long x,long y){
         this.a=a;
@@ -62,16 +63,21 @@ public class Evclid {
 //
 //            U.set(0,V.get(0));
 //            U.set(1,V.get(1));
-//            U.set(2,V.get(2));
+//                U.get(2)
+
 //
 //            V.set(0,T.get(0));
 //            V.set(1,T.get(1));
 //            V.set(2,T.get(2));
 //        }
-        System.out.println( U.get(0));
+//        System.out.println( U.get(0));
+//            System.out.println( U.get(1));
+//            System.out.println( U.get(2));
+            if(U.get(2)<0)
+                Ures=U.get(2)+this.a;
+            else Ures=U.get(2);
 
-
-
+//        System.out.println(Ures);
 
     }
     public  long gcd(){
