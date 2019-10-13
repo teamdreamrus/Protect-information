@@ -41,7 +41,7 @@ public class Start{
 
         //4
 //        System.out.println(a+" "+y+" "+p);
-//        LittleBig lit = new LittleBig(2,3,2); //47 17 27
+//        LittleBig lit = new LittleBig(18,13,11); //47 17 27
 //        Mod d = new Mod(8,11,19);
 //        System.out.println(d.exp2());
 

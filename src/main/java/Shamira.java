@@ -1,6 +1,9 @@
 import java.io.*;
 import java.math.BigInteger;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import static java.lang.Math.pow;
 
@@ -20,104 +23,64 @@ public class Shamira {
         } while (!(isPrime(P) && BigP.isProbablePrime(1)));
         Companion A = new Companion(P);
         Companion B = new Companion(P);
-        //long m = 655654;// 9/2 = 4 5
-        System.out.println("m = ");
-//        System.out.println(m);
         ArrayList<Integer> arrX = new ArrayList<>();
         String path = "origin.txt";
         inputStream = new FileInputStream(path);
         File file = new File(path);
         fileSize = file.length();
-        outputStream = new FileOutputStream("Temp" + path);
-        outputStream2 = new FileOutputStream("New" + path);
-//        int data ;
-        //  char content = (char) data;
-//        System.out.println(data);
-//        System.out.println(content);
-        //& 0xFF
-//        arrX.add((int) A.exp(data, A.getC()));
-//        arrX.add((int) B.exp(arrX.get(0), B.getC()));
-//        System.out.println(arrX.get(1));
 
         byte[] buffer = new byte[(int)fileSize];
         inputStream.read(buffer, 0, buffer.length);
         int[] bytes = new int[buffer.length];
         for (int i = 0; i < bytes.length; i++) {
             bytes[i] = buffer[i] & 0xFF;
+
+        //vse okay
         }
+
 //шифровка
-        ArrayList<Integer> resultWork = new ArrayList<>();
+
         for (int i = 0; i < bytes.length; i++) {
             arrX.add((int) A.exp(bytes[i], A.getC()));
             arrX.add((int) B.exp(arrX.get(0), B.getC()));
-            resultWork.add(arrX.get(1));
+        
+
+            FileWriter writer = new FileWriter("Temp.txt", true);
+            writer.write(arrX.get(1).toString()+" ");
+            writer.flush();
+            System.out.println(arrX.get(1));
             arrX.clear();
-            System.out.println(resultWork.get(i));
         }
-        arrX.clear();
+
         //записать шифрованное
+        //считать шифрованное
+        String fileName = "Temp.txt";
+        String content = Files.lines(Paths.get(fileName)).reduce("", String::concat);
+        String[] koded = content.split(" ");
+        ArrayList<Integer> kodedInt= new ArrayList<>();
+        for(String el : koded){
+            kodedInt.add(Integer.valueOf(el));
+            System.out.println(el);
+        }
+
         //дешифровка
         ArrayList<Integer> result = new ArrayList<>();
+        String t="";
+        byte[] buffer1 = new byte[(int)fileSize];
+        arrX.clear();
         for (int i = 0; i < bytes.length; i++) {
-            arrX.add((int) A.exp(resultWork.get(i), A.getD()));
+            arrX.add((int) A.exp(kodedInt.get(i), A.getD()));
             arrX.add((int) B.exp(arrX.get(0), B.getD()));
             result.add(arrX.get(1));
+
             arrX.clear();
-            System.out.println((char)(int)result.get(i));
+           System.out.println((char)result.get(i).byteValue());
+            FileWriter writer = new FileWriter("New.txt", true);
+            writer.write((char)(byte)(int)result.get(i));
+            writer.flush();
+
         }
-        //записать дешифрованное
-//        byte x;
-//        x =(byte)((int)arrX.get(1));
-//        System.out.println(x);
-//        arrX.add((int) A.exp(arrX.get(1), A.getD()));
-//        arrX.add((int) B.exp(arrX.get(2), B.getD()));
-//
-//        System.out.println((char) (int)arrX.get(3));
 
-//        String koded = "";
-//        ArrayList<Integer> buffer = new ArrayList<>();
-//        arrX.add((int) A.exp(data & 0xFF, A.getC()));
-//        arrX.add((int) B.exp(arrX.get(0), B.getC()));
-//
-//        koded += arrX.get(1).toString() + " ";
-//        arrX.clear();
-//        System.out.println("read");
-
-//        while (data != -1) {
-//
-//            data = inputStream.read();
-//            arrX.add((int) A.exp(data & 0xFF, A.getC()));
-//            arrX.add((int) B.exp(arrX.get(0), B.getC()));
-//
-//            koded += arrX.get(1).toString() + " ";
-//
-//            //сброс arrX
-//            arrX.clear();
-//            System.out.println("shifring");
-//        }
-        //запись в шифрованный файл
-//        byte[] bf = koded.getBytes();
-//        outputStream.write(bf, 0, bf.length);
-
-
-        //дешифровка
-//        ArrayList<Integer> arrDekod = new ArrayList<Integer>();
-//        String[] dekods = koded.split(" ");
-//        for (String el : dekods) {
-//            arrDekod.add(Integer.parseInt(el));
-//        }
-//        byte[] b = new byte[arrDekod.size()];
-//        arrX.clear();
-//        for (int i = 0; i < arrDekod.size(); i++) {
-//            arrX.add((int) A.exp(arrDekod.get(i) & 0xFF, A.getD()));
-//            arrX.add((int) B.exp(arrX.get(0), B.getD()));
-//            byte t = arrX.get(1).byteValue();
-//
-//            b[i] = t;
-//
-//        }
-//
-//        outputStream2.write(b, 0, b.length);
 
 
     }
