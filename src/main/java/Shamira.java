@@ -24,8 +24,9 @@ public class Shamira {
         Companion A = new Companion(P);
         Companion B = new Companion(P);
         ArrayList<Integer> arrX = new ArrayList<>();
-        String path = "origin.txt";
+        String path = "smile.jpg";
         inputStream = new FileInputStream(path);
+        outputStream = new FileOutputStream("NEW"+path);
         File file = new File(path);
         fileSize = file.length();
 
@@ -43,7 +44,7 @@ public class Shamira {
         for (int i = 0; i < bytes.length; i++) {
             arrX.add((int) A.exp(bytes[i], A.getC()));
             arrX.add((int) B.exp(arrX.get(0), B.getC()));
-        
+
 
             FileWriter writer = new FileWriter("Temp.txt", true);
             writer.write(arrX.get(1).toString()+" ");
@@ -71,16 +72,19 @@ public class Shamira {
         for (int i = 0; i < bytes.length; i++) {
             arrX.add((int) A.exp(kodedInt.get(i), A.getD()));
             arrX.add((int) B.exp(arrX.get(0), B.getD()));
+            buffer1[i]=(byte)(int)arrX.get(1);
             result.add(arrX.get(1));
 
             arrX.clear();
-           System.out.println((char)result.get(i).byteValue());
+          /* System.out.println((char)result.get(i).byteValue());
             FileWriter writer = new FileWriter("New.txt", true);
             writer.write((char)(byte)(int)result.get(i));
-            writer.flush();
+            writer.flush();*/
+
 
         }
 
+            outputStream.write(buffer1, 0, buffer1.length);
 
 
     }
