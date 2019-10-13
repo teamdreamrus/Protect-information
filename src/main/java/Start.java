@@ -28,7 +28,7 @@ public class Start{
 //        System.out.println(m1.exp2());
 //
         //2   a,b>0 a>=b
-        Evclid e = new Evclid(22, 7,1,1);
+     //   Evclid e = new Evclid(22, 7,1,1);
 
 //        Evclid e = new Evclid(a,b,1,1);
 //        System.out.println(e.gcd());
@@ -45,8 +45,9 @@ public class Start{
 //        Mod d = new Mod(8,11,19);
 //        System.out.println(d.exp2());
 
-
-        Shamira z = new Shamira();
+//LAB 2
+//        Shamira z = new Shamira();
+            LGamal el = new LGamal();
 
     }
     public static long rnd(long max)
