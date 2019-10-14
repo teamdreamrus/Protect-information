@@ -38,10 +38,15 @@ public class Evclid {
 
             long q = (long)(U.get(0) / V.get(0));
 //            System.out.println(q);
+            //PEREPOLNENIE
             T.set(0,(U.get(0) % V.get(0)));
             T.set(1,(U.get(1) - q * V.get(1)));
             T.set(2,(U.get(2) - q * V.get(2)));
+            System.out.println(q * V.get(1));
+            System.out.println(q * V.get(2));
 
+//            System.out.println(T.get(1));
+//            System.out.println(T.get(2));
             U.set(0,V.get(0));
             U.set(1,V.get(1));
             U.set(2,V.get(2));

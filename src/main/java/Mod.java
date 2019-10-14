@@ -37,7 +37,7 @@ public class Mod {
 
             arrLong.add(modul(arrLong.get(i-1)*arrLong.get(i-1)));
             if(arrLong.get(i)<0) {
-                System.out.print("TUT");System.out.println(arrLong.get(i));
+//                System.out.print("TUT");System.out.println(arrLong.get(i));
             }
 
         }
