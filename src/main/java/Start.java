@@ -47,8 +47,8 @@ public class Start{
 
 //LAB 2
 //        Shamira z = new Shamira();
-            LGamal el = new LGamal();
-
+//            LGamal el = new LGamal();
+            Vernam ver = new Vernam();
     }
     public static long rnd(long max)
     {
