@@ -15,8 +15,8 @@ public class RSA {
         BigInteger BigQ = BigInteger.valueOf(0);
         BigInteger BigP = BigInteger.valueOf(0);
         do {
-            Q = random(100000000);
-            P = random(100000000);
+            Q = random(1000000000);
+            P = random(1000000000);
             BigQ = BigInteger.valueOf(Q);
             BigP = BigInteger.valueOf(P);
 
@@ -47,17 +47,20 @@ public class RSA {
         int message = 124532;
         System.out.println("origin ");
         System.out.println(message+"");
-        Mod xm = new Mod(message, d, N);
-        long ee = xm.exp2().longValue();
-        System.out.print("Shifr ");
-        System.out.println(ee);
-        System.out.println(xm.exp2().toString());
-        Mod res= new Mod(ee,c,N);
-        long newRes = res.exp2().longValue();
-        System.out.println(newRes);
-        System.out.println(res.exp2().toString());
+      BigInteger BRes = BigInteger.valueOf(message).modPow(BigInteger.valueOf(d),BigInteger.valueOf(N));
+        System.out.println(BRes.toString());
+//        Mod xm = new Mod(message, d, N);
+//        long ee = xm.exp2().longValue();
+//        System.out.print("Shifr ");
+//        System.out.println(ee);
+//        System.out.println(xm.exp2().toString());
+//        Mod res= new Mod(ee,c,N);
+//        long newRes = res.exp2().longValue();
+//        System.out.println(newRes);
+//        System.out.println(res.exp2().toString());
+        BigInteger OutRes = BRes.modPow(BigInteger.valueOf(c),BigInteger.valueOf(N));
         System.out.print("New ");
-        System.out.println(newRes);
+        System.out.println(OutRes.toString());
 
 
 
