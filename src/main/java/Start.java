@@ -48,8 +48,8 @@ public class Start{
 //LAB 2
 //        Shamira z = new Shamira();
 //            LGamal el = new LGamal();
-            Vernam ver = new Vernam();
-//        RSA rsa= new RSA();
+//            Vernam ver = new Vernam();
+        RSA rsa= new RSA();
     }
     public static long rnd(long max)
     {

@@ -1,4 +1,8 @@
+import java.io.*;
 import java.math.BigInteger;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
 
 import static java.lang.Math.pow;
 import static jdk.nashorn.internal.objects.NativeMath.random;
@@ -10,8 +14,16 @@ public class RSA {
     public long Fi;
     public long d;
     public long c;
+    public long fileSize;
+    private InputStream inputStream;
+    private OutputStream outputStream;
+    public RSA() throws IOException {
+        String path = "smile.jpg";
+        inputStream = new FileInputStream(path);
+        outputStream = new FileOutputStream("NEW"+path);
+        File file = new File(path);
+        fileSize = file.length();
 
-    public RSA() {
         BigInteger BigQ = BigInteger.valueOf(0);
         BigInteger BigP = BigInteger.valueOf(0);
         do {
@@ -27,6 +39,9 @@ public class RSA {
             d = random(Fi);
 
         } while (gcd(Fi, d) != 1);
+
+
+
         BigInteger M;
         BigInteger fi =  BigInteger.valueOf(Fi);
       //  do {
@@ -43,12 +58,29 @@ public class RSA {
 
 //            System.out.println(M.longValue());
        // } while (!M.equals(BigInteger.ONE));
+        byte[] buffer = new byte[(int)fileSize];
+        inputStream.read(buffer, 0, buffer.length);
+        int[] bytes = new int[buffer.length];
+        for (int i = 0; i < bytes.length; i++) {
+            bytes[i] = buffer[i] & 0xFF;
 
-        int message = 124532;
+            //vse okay
+        }
+
+//        int message = 124532;
         System.out.println("origin ");
-        System.out.println(message+"");
-      BigInteger BRes = BigInteger.valueOf(message).modPow(BigInteger.valueOf(d),BigInteger.valueOf(N));
-        System.out.println(BRes.toString());
+//        System.out.println(message+"");
+        for (int aByte : bytes) {
+            BigInteger BRes = BigInteger.valueOf(aByte).modPow(BigInteger.valueOf(d), BigInteger.valueOf(N));
+            FileWriter writer = new FileWriter("Temp.txt", true);
+            writer.write(BRes.toString()+" ");
+            writer.flush();
+
+            //vse okay
+        }
+
+
+//        System.out.println(BRes.toString());
 //        Mod xm = new Mod(message, d, N);
 //        long ee = xm.exp2().longValue();
 //        System.out.print("Shifr ");
@@ -58,9 +90,25 @@ public class RSA {
 //        long newRes = res.exp2().longValue();
 //        System.out.println(newRes);
 //        System.out.println(res.exp2().toString());
-        BigInteger OutRes = BRes.modPow(BigInteger.valueOf(c),BigInteger.valueOf(N));
-        System.out.print("New ");
-        System.out.println(OutRes.toString());
+        String fileName = "Temp.txt";
+        String content = Files.lines(Paths.get(fileName)).reduce("", String::concat);
+        String[] koded = content.split(" ");
+        byte[] buffer1 = new byte[(int)fileSize];
+        ArrayList<BigInteger> kodedBig= new ArrayList<>();
+        for(int i = 0; i < buffer1.length; i++){
+            kodedBig.add(BigInteger.valueOf(Long.parseLong(koded[i])));
+            BigInteger OutRes = kodedBig.get(i).modPow(BigInteger.valueOf(c),BigInteger.valueOf(N));
+            buffer1[i]=(byte)OutRes.byteValue();
+           System.out.println(OutRes.byteValue());
+        }
+
+//for(int i = 0; i < kodedBig.size; i++){
+//
+//}
+        outputStream.write(buffer1, 0, buffer1.length);
+
+
+
 
 
 
@@ -86,5 +134,17 @@ public class RSA {
             b = r;
         }
         return a;
+    }
+    public class InputOutputStreamExam {
+        private InputStream inputStream;
+        private OutputStream outputStream;
+        private String path;
+
+
+        public InputOutputStreamExam(String path) {
+            this.path = path;
+
+        }
+
     }
 }

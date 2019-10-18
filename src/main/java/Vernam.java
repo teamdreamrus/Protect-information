@@ -27,12 +27,12 @@ public class Vernam {
         }
 
       //  char[] achText = message.toCharArray();
-        char[] achKey = new char[achText.length];
-        char[] achResult = new char[achText.length];
+        char[] achKey = new char[bytes.length];
+        int[] achResult = new int[bytes.length];
         Random random = new Random();
         for (int i = 0; i < (int)fileSize; i++) {
             achKey[i] = (char) random.nextInt(Byte.MAX_VALUE);
-            achResult[i] = (char) (bytes[i] ^ achKey[i]);
+            achResult[i] =  (bytes[i] ^ achKey[i]);
             FileWriter writer = new FileWriter("Temp.txt", true);
             writer.write(achResult[i]+" ");
             writer.flush();
@@ -64,7 +64,7 @@ public class Vernam {
 
       //  System.out.println("Result: " + String.valueOf(achResult));
         byte[] buffer1 = new byte[(int)fileSize];
-        char[] achDecrypt = new char[achText.length];
+        char[] achDecrypt = new char[bytes.length];
         for (int i = 0; i < kodedInt.size(); i++) {
           //  achDecrypt[i] = ;
             buffer1[i]=(byte)(int)(kodedInt.get(i) ^ achKey[i]);
