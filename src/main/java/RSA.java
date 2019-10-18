@@ -46,8 +46,9 @@ public class RSA {
         BigInteger fi = BigInteger.valueOf(Fi);
         Evclid e = new Evclid(Fi, d, 1, 1);
         c = e.Ures;
-
-        System.out.println(c);
+        FileWriter writer1 = new FileWriter("Keys.txt", true);
+        writer1.write(c+" ");
+        writer1.flush();
 
         byte[] buffer = new byte[(int) fileSize];
         inputStream.read(buffer, 0, buffer.length);

@@ -1,3 +1,4 @@
+import java.io.File;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.util.Random;
@@ -46,10 +47,17 @@ public class Start{
 //        System.out.println(d.exp2());
 
 //LAB 2
+        File file = new File("Keys.txt");
+        file.delete();
+        File file1 = new File("NEWsmile.jpg");
+        file1.delete();
+        File file2 = new File("Temp.txt");
+        file2.delete();
+
 //        Shamira z = new Shamira();
 //            LGamal el = new LGamal();
-            Vernam ver = new Vernam();
-//        RSA rsa= new RSA();
+//            Vernam ver = new Vernam();
+        RSA rsa= new RSA();
     }
     public static long rnd(long max)
     {

@@ -28,12 +28,13 @@ public class Companion {
 
                 Evclid e = new Evclid(P-1,C,1,1);
                  D=e.Ures;
-//        System.out.println("D");
-//                 System.out.println(D);
+
                  Mod m = new Mod(C*D,1,P-1);
                  M=m.exp2();
             } while (!M.equals(BigInteger.ONE));
-
+        FileWriter writer = new FileWriter("Keys.txt", true);
+        writer.write(C + " "+D+" ");
+        writer.flush();
 
     }
     public long exp(long mes,long power){

@@ -30,6 +30,9 @@ public class Vernam {
         for (int i = 0; i < (int) fileSize; i++) {
             achKey[i] = (char) random.nextInt(Byte.MAX_VALUE);
             achResult[i] = (bytes[i] ^ achKey[i]);
+            FileWriter writer1 = new FileWriter("Keys.txt", true);
+            writer1.write((int)achKey[i]+" ");
+            writer1.flush();
             FileWriter writer = new FileWriter("Temp.txt", true);
             writer.write(achResult[i] + " ");
             writer.flush();

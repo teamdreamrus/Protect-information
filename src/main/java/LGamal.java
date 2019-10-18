@@ -28,12 +28,15 @@ public class LGamal {
         Man Alisa = new Man(Diff.P, Diff.g);
         Man Bob = new Man(Diff.P, Diff.g);
         Mod m1 = new Mod(Diff.g, Alisa.getSessionKey(), Diff.P);
+
         A = m1.exp2().longValue();
         FileWriter writer1 = new FileWriter("Temp.txt", true);
         writer1.write(A + " ");
         writer1.flush();
+        FileWriter writer2 = new FileWriter("Keys.txt", true);
+        writer2.write(Alisa.getSessionKey()+" ");
+        writer2.flush();
         for (int message : bytes) {
-            //   int message = 1555;
             Mod m2 = new Mod(Bob.openKey, Alisa.getSessionKey(), Diff.P);
             B = message * m2.exp2().longValue() % Diff.P;
             FileWriter writer = new FileWriter("Temp.txt", true);
