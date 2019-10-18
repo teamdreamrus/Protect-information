@@ -19,24 +19,21 @@ public class Shamira {
         do {
             P = rnd(100000000);
             BigP = BigInteger.valueOf(P);
-            //   System.out.println("p");
         } while (!(isPrime(P) && BigP.isProbablePrime(1)));
         Companion A = new Companion(P);
         Companion B = new Companion(P);
         ArrayList<Integer> arrX = new ArrayList<>();
         String path = "smile.jpg";
         inputStream = new FileInputStream(path);
-        outputStream = new FileOutputStream("NEW"+path);
+        outputStream = new FileOutputStream("NEW" + path);
         File file = new File(path);
         fileSize = file.length();
 
-        byte[] buffer = new byte[(int)fileSize];
+        byte[] buffer = new byte[(int) fileSize];
         inputStream.read(buffer, 0, buffer.length);
         int[] bytes = new int[buffer.length];
         for (int i = 0; i < bytes.length; i++) {
             bytes[i] = buffer[i] & 0xFF;
-
-        //vse okay
         }
 
 //шифровка
@@ -45,9 +42,8 @@ public class Shamira {
             arrX.add((int) A.exp(bytes[i], A.getC()));
             arrX.add((int) B.exp(arrX.get(0), B.getC()));
 
-
             FileWriter writer = new FileWriter("Temp.txt", true);
-            writer.write(arrX.get(1).toString()+" ");
+            writer.write(arrX.get(1).toString() + " ");
             writer.flush();
             System.out.println(arrX.get(1));
             arrX.clear();
@@ -58,35 +54,26 @@ public class Shamira {
         String fileName = "Temp.txt";
         String content = Files.lines(Paths.get(fileName)).reduce("", String::concat);
         String[] koded = content.split(" ");
-        ArrayList<Integer> kodedInt= new ArrayList<>();
-        for(String el : koded){
+        ArrayList<Integer> kodedInt = new ArrayList<>();
+        for (String el : koded) {
             kodedInt.add(Integer.valueOf(el));
             System.out.println(el);
         }
 
         //дешифровка
         ArrayList<Integer> result = new ArrayList<>();
-        String t="";
-        byte[] buffer1 = new byte[(int)fileSize];
+        String t = "";
+        byte[] buffer1 = new byte[(int) fileSize];
         arrX.clear();
         for (int i = 0; i < bytes.length; i++) {
             arrX.add((int) A.exp(kodedInt.get(i), A.getD()));
             arrX.add((int) B.exp(arrX.get(0), B.getD()));
-            buffer1[i]=(byte)(int)arrX.get(1);
+            buffer1[i] = (byte) (int) arrX.get(1);
             result.add(arrX.get(1));
 
             arrX.clear();
-          /* System.out.println((char)result.get(i).byteValue());
-            FileWriter writer = new FileWriter("New.txt", true);
-            writer.write((char)(byte)(int)result.get(i));
-            writer.flush();*/
-
-
         }
-
-            outputStream.write(buffer1, 0, buffer1.length);
-
-
+        outputStream.write(buffer1, 0, buffer1.length);
     }
 
     private static long rnd(long max) {
@@ -107,11 +94,8 @@ public class Shamira {
         private OutputStream outputStream;
         private String path;
 
-
         public InputOutputStreamExam(String path) {
             this.path = path;
-
         }
-
     }
 }
