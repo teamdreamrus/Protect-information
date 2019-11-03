@@ -62,7 +62,9 @@ public class Start {
         //LAB 3#
 //            signatureLgamal sigL = new signatureLgamal();
 
-        signatureRSA sigRSA = new signatureRSA();
+//        signatureRSA sigRSA = new signatureRSA();
+
+    signatureGHOST sigGhost = new signatureGHOST();
     }
 
     public static long rnd(long max) {

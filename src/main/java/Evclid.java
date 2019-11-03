@@ -79,8 +79,8 @@ public class Evclid {
 //        System.out.println( U.get(0));
 //            System.out.println( U.get(1));
 //            System.out.println( U.get(2));
-        System.out.println("U.get(2)");
-        System.out.println(U.get(2));
+//        System.out.println("U.get(2)");
+//        System.out.println(U.get(2));
             if(U.get(2)<0)
                 Ures=U.get(2)+this.a;
             else Ures=U.get(2);
