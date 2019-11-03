@@ -60,8 +60,9 @@ public class Start {
 
 
         //LAB 3#
-            signatureLgamal sigL = new signatureLgamal();
+//            signatureLgamal sigL = new signatureLgamal();
 
+        signatureRSA sigRSA = new signatureRSA();
     }
 
     public static long rnd(long max) {
