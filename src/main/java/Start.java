@@ -1,12 +1,9 @@
 import java.io.File;
 import java.io.IOException;
-import java.math.BigInteger;
-import java.util.Random;
+import java.security.NoSuchAlgorithmException;
 
-import static java.lang.Math.pow;
-
-public class Start{
-    public static void main(String[] args) throws IOException {
+public class Start {
+    public static void main(String[] args) {
        /* Mod m = new Mod(17,47,33);
         System.out.println(m.exp2());
 */
@@ -29,12 +26,11 @@ public class Start{
 //        System.out.println(m1.exp2());
 //
         //2   a,b>0 a>=b
-     //   Evclid e = new Evclid(22, 7,1,1);
+        //   Evclid e = new Evclid(22, 7,1,1);
 
 //        Evclid e = new Evclid(a,b,1,1);
 //        System.out.println(e.gcd());
         //System.out.println(e.gcd());
-
 
 
         //3
@@ -53,14 +49,22 @@ public class Start{
         file1.delete();
         File file2 = new File("Temp.txt");
         file2.delete();
-
-//        Shamira z = new Shamira();
+//        try {
+//            Shamira z = new Shamira();
 //            LGamal el = new LGamal();
 //            Vernam ver = new Vernam();
-        RSA rsa= new RSA();
+//            RSA rsa = new RSA();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+
+
+        //LAB 3#
+            signatureLgamal sigL = new signatureLgamal();
+
     }
-    public static long rnd(long max)
-    {
+
+    public static long rnd(long max) {
         return (long) (Math.random() * ++max);
     }
 }
