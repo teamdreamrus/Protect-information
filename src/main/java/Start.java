@@ -3,7 +3,7 @@ import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 
 public class Start {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
        /* Mod m = new Mod(17,47,33);
         System.out.println(m.exp2());
 */
@@ -64,7 +64,11 @@ public class Start {
 
 //        signatureRSA sigRSA = new signatureRSA();
 
-    signatureGHOST sigGhost = new signatureGHOST();
+//    signatureGHOST sigGhost = new signatureGHOST();
+
+        //Lab 4
+Poker p = new Poker(3);
+
     }
 
     public static long rnd(long max) {

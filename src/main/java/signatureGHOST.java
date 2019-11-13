@@ -1,3 +1,4 @@
+import java.io.FileWriter;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.security.NoSuchAlgorithmException;
@@ -14,7 +15,7 @@ public class signatureGHOST {
     public long g;
     public long x;
     public long y;
-    public signatureGHOST(){
+    public signatureGHOST() throws IOException {
         Random random = new Random();
 //        System.out.println(pow(2,1024));
         do{
@@ -56,7 +57,9 @@ public class signatureGHOST {
                 r = (BigInteger.valueOf(a).modPow(BigInteger.valueOf(k), BigInteger.valueOf(p)).modPow(BigInteger.ONE, BigInteger.valueOf(q)).longValue());
 
                 s = BigInteger.valueOf(k * hashCode.get(i) + x * r).modPow(BigInteger.ONE, BigInteger.valueOf(p)).longValue();
-
+                FileWriter writer = new FileWriter("Temp.txt", true);
+                writer.write(r+" " +s+ "\n");
+                writer.flush();
             } while (r == 0L || s == 0L);
             arrS.add(s);
             arrR.add(r);

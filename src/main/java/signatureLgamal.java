@@ -1,3 +1,4 @@
+import java.io.FileWriter;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.security.NoSuchAlgorithmException;
@@ -7,7 +8,7 @@ import static java.lang.Math.pow;
 
 public class signatureLgamal {
 
-    public signatureLgamal(){
+    public signatureLgamal() throws IOException {
         DiffHellman Diff = new DiffHellman();
         Man Alisa = new Man(Diff.P, Diff.g);
         Man Bob = new Man(Diff.P, Diff.g);
@@ -43,7 +44,16 @@ public class signatureLgamal {
         ArrayList<Long> s= new ArrayList<>();
         for(Integer hash : hashCode){
             u = (hash.longValue() - Alisa.closedKey*R.longValue() ) % (Diff.P-1);
-            s.add((e.Ures*u) % (Diff.P-1));
+            BigInteger U = BigInteger.valueOf(hash.longValue() - Alisa.closedKey*R.longValue());
+
+//            System.out.println(;
+            long u1=U.modPow(BigInteger.ONE,P.subtract(BigInteger.ONE)).longValue();
+
+            long x = (e.Ures*u1) % (Diff.P-1);
+            s.add(x);
+            FileWriter writer = new FileWriter("Temp.txt", true);
+            writer.write(x + " ");
+            writer.flush();
     }
         //Проверка
         for(int i=0;i<hashCode.size();i++){

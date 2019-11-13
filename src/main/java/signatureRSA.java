@@ -1,3 +1,4 @@
+import java.io.FileWriter;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.security.NoSuchAlgorithmException;
@@ -13,7 +14,7 @@ public class signatureRSA {
     public long d; //open
     public long c;
 
-    public signatureRSA() {
+    public signatureRSA() throws IOException {
         BigInteger BigQ = BigInteger.valueOf(0);
         BigInteger BigP = BigInteger.valueOf(0);
         do {
@@ -46,6 +47,9 @@ public class signatureRSA {
         ArrayList<BigInteger> SArray = new ArrayList<>();
         for (int i = 0; i < hashCode.size(); i++) {
             BigInteger S = BigInteger.valueOf(hashCode.get(i)).modPow(BigInteger.valueOf(c), BigInteger.valueOf(N));
+            FileWriter writer = new FileWriter("Temp.txt", true);
+            writer.write(S.longValue() + " ");
+            writer.flush();
             SArray.add(S);
         }
         for(int i = 0; i < SArray.size(); i++){
