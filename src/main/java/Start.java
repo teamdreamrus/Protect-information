@@ -67,8 +67,13 @@ public class Start {
 //    signatureGHOST sigGhost = new signatureGHOST();
 
         //Lab 4
-Poker p = new Poker(3);
+//Poker p = new Poker(3);
+        try{
 
+            Voter v = new Voter(1232223,123123);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public static long rnd(long max) {
