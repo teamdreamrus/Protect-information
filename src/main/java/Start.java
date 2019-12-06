@@ -3,7 +3,7 @@ import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 
 public class Start {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws Exception {
        /* Mod m = new Mod(17,47,33);
         System.out.println(m.exp2());
 */
@@ -68,12 +68,13 @@ public class Start {
 
         //Lab 4
 //Poker p = new Poker(3);
-        try{
-
-            Voter v = new Voter(1232223,123123);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        try{
+//
+//            Voter v = new Voter(1232223,123123);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+        Voting v = new Voting();
     }
 
     public static long rnd(long max) {

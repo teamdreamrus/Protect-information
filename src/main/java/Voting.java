@@ -10,7 +10,7 @@ public class Voting {
     private long d;
     private long c;
 
-    public Voting() {
+    public Voting() throws Exception {
         BigInteger BigQ = BigInteger.valueOf(0);
         BigInteger BigP = BigInteger.valueOf(0);
         do {
@@ -29,6 +29,26 @@ public class Voting {
 
         Evclid e1 = new Evclid(Fi, d, 1, 1);
         c = e1.Ures;
+
+
+
+        BigInteger DD = BigInteger.valueOf(d);
+        Voter Alisa = new Voter(N,d,"Alisa");
+        BigInteger HH = BigInteger.valueOf(Alisa.h);
+        BigInteger CC = BigInteger.valueOf(c);
+        BigInteger NN = BigInteger.valueOf(N);
+        BigInteger S_ =HH.modPow(CC,NN);
+        String res = Alisa.signature(S_);
+        String ansersSha = Alisa.getHash(Alisa.ansers);
+        BigInteger S = BigInteger.valueOf(Long.parseLong(res));
+        BigInteger Result1 = S.modPow(DD,NN);
+        System.out.println(ansersSha);
+        System.out.println(Result1.toString());
+
+
+
+
+
     }
     private boolean isPrime(long P) {
         if (P <= 1) return false;

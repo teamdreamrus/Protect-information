@@ -1,4 +1,6 @@
+import java.math.BigInteger;
 import java.security.MessageDigest;
+import java.util.ArrayList;
 
 public class Voter {
     public Long answer;
@@ -6,20 +8,41 @@ public class Voter {
     public Long d;
     public Long r;
     public Long h;
-    public Voter(long N, long d) throws Exception {
+    public String hash;
+    public BigInteger NN;
+    public String ansers;
+
+    public Voter(long N, long d, String name) throws Exception {
 
         answer = random((long) 2);
         Long rnd = random(10000);
-        answer = Long.valueOf(rnd.toString() + answer.toString());
+        ansers = rnd.toString()  + answer.toString()+name;
+        answer = Long.valueOf(ansers);
         this.N = N;
         this.d = d;
-        while(true){
+        while (true) {
             r = random(1000000);
-            if(gcd(N,r) == 1) break;
+            if (gcd(N, r) == 1) break;
         }
         System.out.println(answer);
-        System.out.println(getHash(answer.toString()));
+        hash = getHash(answer.toString());
+        System.out.println(hash);
         // h = (getHash(answer.toString());
+        BigInteger H = BigInteger.valueOf(Long.parseLong(hash));
+        BigInteger R = BigInteger.valueOf(r);
+        BigInteger D = BigInteger.valueOf(d);
+        NN = BigInteger.valueOf(N);
+
+        H = H.multiply(R.modPow(D, NN));
+        h = H.modPow(BigInteger.ONE, NN).longValue();
+    }
+    public String signature(BigInteger s_) {
+
+        Evclid e = new Evclid(r,N,1,1);
+        BigInteger RR = BigInteger.valueOf(e.Ures).modPow(BigInteger.ONE, NN);
+        BigInteger SS = s_.modPow(BigInteger.ONE, NN);
+        BigInteger res = RR.multiply(SS).modPow(BigInteger.ONE, NN);
+        return res.toString();
 
     }
 
@@ -35,8 +58,8 @@ public class Voter {
         }
         return a;
     }
-    public String  getHash(String str)throws Exception     {
 
+    public String getHash(String str) throws Exception {
 
 
         MessageDigest md = MessageDigest.getInstance("SHA-256");
